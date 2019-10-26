@@ -1,0 +1,3 @@
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week3/AlmostAntenna/CMakeFiles/rebuild_cache.dir
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week3/AlmostAntenna/CMakeFiles/AlmostAntenna.dir
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week3/AlmostAntenna/CMakeFiles/edit_cache.dir
