@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week6/attack_of_the_clones/src/algorithm.cpp
+iostream
+-
+vector
+-
+utility
+-
+algorithm
+-
+numeric
+-
+limits
+-
+stdexcept
+-
+map
+-
+
