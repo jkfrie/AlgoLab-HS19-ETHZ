@@ -49,10 +49,12 @@ vector<Result> possibilities(int halfN, const vector<vector<pair<int,int>>> &swi
     }
 
     // Print found solution
+    /*
     for(int i = 0; i < m; ++i) {
       cout << cur_brightnesses[i] << " ";
     }
     cout << endl;
+    */
 
     // Check if is legal
     bool legal = true;
@@ -66,7 +68,6 @@ vector<Result> possibilities(int halfN, const vector<vector<pair<int,int>>> &swi
     // Add to result if valid
     if(legal) {
       results.push_back(Result(sum_switches, accumulate(cur_brightnesses.begin(), cur_brightnesses.end(), 0), cur_brightnesses));
-      cout << sum_switches << " " << accumulate(cur_brightnesses.begin(), cur_brightnesses.end(), 0) << " " << endl;
     }
   }
   return results;
@@ -106,20 +107,22 @@ void testcase() {
   vector<Result> result2 = possibilities(n_secondhalf, switches_half2);
   sort(result2.begin(), result2.end());
 
+  // print result2
+  /*
   for (auto elem : result2) {
     cout << elem.total_brightness << " ";
   }
   cout << endl;
+  */
 
   // Binary Search over results
   int cur_switches;
   int min_switches = -1;
-  bool legal = true;
   for(auto elem : result1) {
     Result target(0, total_brightness - elem.total_brightness, vector<int>());
     auto range = equal_range(result2.begin(), result2.end(), target);
-    cout << range.second - range.first << endl;
 		for (auto it = range.first; it != range.second; ++it) {
+      bool legal = true;
       for(int i = 0; i < m; ++i) {
         if(elem.switches[i] + it->switches[i] != brightness[i]) {
           legal = false;

@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week2/RussiaLove3/src/algorithm.cpp
+iostream
+-
+vector
+-
+limits
+-
+numeric
+-
+cmath
+-
+map
+-
+tuple
+-
+algorithm
+-
+

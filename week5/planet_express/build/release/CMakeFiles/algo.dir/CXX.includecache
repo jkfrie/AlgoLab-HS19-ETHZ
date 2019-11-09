@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week5/planet_express/src/algorithm.cpp
+iostream
+-
+vector
+-
+algorithm
+-
+numeric
+-
+limits
+-
+boost/graph/adjacency_list.hpp
+-
+boost/graph/dijkstra_shortest_paths.hpp
+-
+boost/graph/strong_components.hpp
+-
+
