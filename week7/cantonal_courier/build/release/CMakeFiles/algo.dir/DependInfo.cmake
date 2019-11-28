@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week7/canonal_courier/src/algorithm.cpp" "/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week7/canonal_courier/build/release/CMakeFiles/algo.dir/src/algorithm.cpp.o"
+  "/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week7/cantonal_courier/src/algorithm.cpp" "/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week7/cantonal_courier/build/release/CMakeFiles/algo.dir/src/algorithm.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
