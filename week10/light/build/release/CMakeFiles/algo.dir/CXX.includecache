@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week10/light/src/algorithm.cpp
+iostream
+-
+vector
+-
+algorithm
+-
+cmath
+-
+utility
+-
+numeric
+-
+limits
+-
+stdexcept
+-
+CGAL/Exact_predicates_inexact_constructions_kernel.h
+-
+
