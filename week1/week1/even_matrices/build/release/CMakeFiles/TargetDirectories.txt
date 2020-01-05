@@ -1,0 +1,3 @@
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week1/week1/even_matrices/build/release/CMakeFiles/rebuild_cache.dir
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week1/week1/even_matrices/build/release/CMakeFiles/algo.dir
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week1/week1/even_matrices/build/release/CMakeFiles/edit_cache.dir

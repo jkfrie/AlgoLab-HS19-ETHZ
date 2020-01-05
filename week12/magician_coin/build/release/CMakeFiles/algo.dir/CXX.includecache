@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week12/magician_coin/src/algorithm.cpp
+iostream
+-
+iomanip
+-
+vector
+-
+algorithm
+-
+numeric
+-
+limits
+-
+stdexcept
+-
+cmath
+-
+

@@ -1,0 +1,3 @@
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week12/magician_coin/build/debug/CMakeFiles/rebuild_cache.dir
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week12/magician_coin/build/debug/CMakeFiles/algo.dir
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week12/magician_coin/build/debug/CMakeFiles/edit_cache.dir

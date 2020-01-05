@@ -1,0 +1,3 @@
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week2/week2/burning_coins/build/debug/CMakeFiles/rebuild_cache.dir
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week2/week2/burning_coins/build/debug/CMakeFiles/algo.dir
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week2/week2/burning_coins/build/debug/CMakeFiles/edit_cache.dir
