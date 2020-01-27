@@ -35,7 +35,6 @@ void power_vector(vector<double> &vec, int x, int d) {
     vec[i] = vec[i - 1] * x;
   }
 }
-
 bool check(const int d, const vector<Position> &healthy, const vector<Position> &tumor) {
 
   // create an LP with Ax <= b, no lower and upper bounds

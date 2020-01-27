@@ -58,12 +58,6 @@ void testcase() {
     ++letters[cur];
     ++n;
   }
-  //cout << "n: " << n << endl;
-
-  for(auto elem : letters) {
-    //cout << "letters: " << elem.first << " " << elem.ND << endl;
-  }
-  //cout << endl;
 
   // Setup Graph
   flow_graph G(26);

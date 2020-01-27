@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week10/moving_books/src/algorithm.cpp
+iostream
+-
+vector
+-
+set
+-
+algorithm
+-
+numeric
+-
+limits
+-
+stdexcept
+-
+

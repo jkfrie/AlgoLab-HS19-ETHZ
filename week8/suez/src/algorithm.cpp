@@ -8,14 +8,14 @@
 
 #include <CGAL/QP_models.h>
 #include <CGAL/QP_functions.h>
-#include <CGAL/Gmpz.h>
+#include <CGAL/Gmpq.h>
 
 // choose input type (input coefficients must fit)
 typedef long IT;
 // choose exact type for solver (CGAL::Gmpz or CGAL::Gmpq)
-typedef CGAL::Gmpz ET;
+typedef CGAL::Gmpq ET;
 // program and solution types
-typedef CGAL::Quadratic_program<IT> Program;
+typedef CGAL::Quadratic_program<ET> Program;
 typedef CGAL::Quadratic_program_solution<ET> Solution;
 
 using namespace std;
@@ -57,7 +57,7 @@ void testcase() {
       long d_height = 2 * abs(new_pos[i].second - new_pos[j].second);
 
       // Only one condition must be fulfilled, take less strict.
-      if(d_width / w > d_height / h) {
+      if(d_width / (double)w > d_height /(double)h) {
         lp.set_a(i, constraint_index,  w);
         lp.set_a(j, constraint_index, w);
         lp.set_b(constraint_index, d_width);
@@ -75,15 +75,15 @@ void testcase() {
 
   // No overlaps with the old posters - find closest old poster for all
   REP(i, n) {
-    long min_width = LONG_MAX;
-    long min_height = LONG_MAX;
+    double min_width = numeric_limits<double>::max();
+    double min_height = numeric_limits<double>::max();
     REP(j, m) {
-      long d_width = 2 * abs(new_pos[i].first - old_pos[j].first) - w;
-      long d_height = 2 * abs(new_pos[i].second - old_pos[j].second) - h;
+      double d_width = 2 * abs(new_pos[i].first - old_pos[j].first) - w;
+      double d_height = 2 * abs(new_pos[i].second - old_pos[j].second) - h;
       //cout << "d_width: " << d_width << " d_height: " << d_height << endl;
 
       // Only one condition must be fulfilled, take less strict.
-      if(d_width / w > d_height / h) {
+      if(d_width / (double)w > d_height / (double)h) {
         min_width = min(min_width, d_width);
       }
       else {
@@ -94,7 +94,7 @@ void testcase() {
     //cout << "min_height: " << min_height << endl;
 
     // Here we have to take stricter condition!
-    if(min_width / w < min_height / h) {
+    if(min_width / (double)w < min_height / (double)h) {
       lp.set_a(i, constraint_index,  w);
       lp.set_b(constraint_index, min_width);
       //cout << i << " " << min_width << endl;

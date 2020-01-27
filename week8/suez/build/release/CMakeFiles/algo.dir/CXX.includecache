@@ -25,6 +25,6 @@ CGAL/QP_models.h
 -
 CGAL/QP_functions.h
 -
-CGAL/Gmpz.h
+CGAL/Gmpq.h
 -
 

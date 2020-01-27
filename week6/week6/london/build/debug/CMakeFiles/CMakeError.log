@@ -1,0 +1,55 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week6/week6/london/build/debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_97e41/fast"
+/usr/bin/make -f CMakeFiles/cmTC_97e41.dir/build.make CMakeFiles/cmTC_97e41.dir/build
+make[1]: Verzeichnis „/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week6/week6/london/build/debug/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_97e41.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_97e41.dir/CheckSymbolExists.c.o   -c /home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week6/week6/london/build/debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_97e41
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_97e41.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_97e41.dir/CheckSymbolExists.c.o  -o cmTC_97e41 
+CMakeFiles/cmTC_97e41.dir/CheckSymbolExists.c.o: In Funktion »main«:
+CheckSymbolExists.c:(.text+0x1b): Warnung: undefinierter Verweis auf »pthread_create«
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_97e41.dir/build.make:97: recipe for target 'cmTC_97e41' failed
+make[1]: *** [cmTC_97e41] Error 1
+make[1]: Verzeichnis „/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week6/week6/london/build/debug/CMakeFiles/CMakeTmp“ wird verlassen
+Makefile:126: recipe for target 'cmTC_97e41/fast' failed
+make: *** [cmTC_97e41/fast] Error 2
+
+File /home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week6/week6/london/build/debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week6/week6/london/build/debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_211bd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_211bd.dir/build.make CMakeFiles/cmTC_211bd.dir/build
+make[1]: Verzeichnis „/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week6/week6/london/build/debug/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_211bd.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_211bd.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_211bd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_211bd.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_211bd.dir/CheckFunctionExists.c.o  -o cmTC_211bd -lpthreads 
+/usr/bin/ld: -lpthreads kann nicht gefunden werden
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_211bd.dir/build.make:97: recipe for target 'cmTC_211bd' failed
+make[1]: *** [cmTC_211bd] Error 1
+make[1]: Verzeichnis „/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week6/week6/london/build/debug/CMakeFiles/CMakeTmp“ wird verlassen
+Makefile:126: recipe for target 'cmTC_211bd/fast' failed
+make: *** [cmTC_211bd/fast] Error 2
+
+
