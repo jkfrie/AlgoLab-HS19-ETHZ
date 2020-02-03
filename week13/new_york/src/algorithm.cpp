@@ -11,67 +11,93 @@ using namespace std;
 
 #define REP(i, n) for (int i = 0; i < n; ++i)
 
+int n, m, k;
+vector<vector<int>> adj_list;
+vector<int> temperature;
+vector<int> pred_map;
+multiset<int> s;
+vector<int> path;
+set<int> result;
+
+void is_start(int cur, int dist) {
+  path.push_back(cur);
+  s.insert(temperature[cur]);
+  dist++;
+
+  /*
+  cout << "cur: " << cur << " dist: " << dist << endl;
+  cout << "temps: ";
+  for(auto elem : s) {
+          cout << elem << " ";
+  }
+  cout << endl;
+  cout << "path: ";
+  for(auto elem : path) {
+          cout << elem << " ";
+  }
+  cout << endl;
+  */
+  
+  if(dist > m) {
+    --dist;
+    auto it = s.find(temperature[*(path.rbegin() + m)]);
+    s.erase(it);
+  }
+
+  // check if l is start
+  if (dist == m) {
+    // check if temp diff is below k
+    int diff = abs(*s.begin() - *(--s.end()));
+    // cout << "diff: " << diff << endl;
+    if (diff <= k) {
+      result.insert(*(path.rbegin() + m - 1));
+      //cout << "added to result" << endl;
+    }
+  }
+
+  // call function on children
+  for (auto child : adj_list[cur]) {
+    is_start(child, dist);
+  }
+
+  // recreate stackframe from previous point
+  path.pop_back();
+  auto it = s.find(temperature[cur]);
+  s.erase(it);
+
+  // Check if also need to add temp of l
+  if (path.size() >= m) {
+    int i = path.rbegin()[m-1];
+    s.insert(temperature[i]);
+  }
+}
+
 void testcase() {
-  int n, m, k;
   cin >> n >> m >> k;
-  vector<int> next(n, -1);
-  vector<int> temp(n);
-  REP(i, n) cin >> temp[i];
+  temperature = vector<int>(n);
+  adj_list = vector<vector<int>>(n);
+  pred_map = vector<int>(n, -1);
+  result.clear();
+  REP(i, n) cin >> temperature[i];
   REP(i, n - 1) {
     int u, v;
     cin >> u >> v;
-    next[u] = v;
+    adj_list[u].push_back(v);
+    pred_map[v] = u;
   }
 
-  // consider straights path (testsets 1 and 2)
-  // Sliding window alg
-  int dist = 1;
-  multiset<int> temp_set;
-  temp_set.insert(temp[0]);
-  int r = 0;
-  int l = 0;
-  vector<int> result;
-  while (next[l] != -1) {
-    // cout << "l: " << l << endl;
-    while (dist != m && next[r] != -1) {
-      dist++;
-      // cout << "dist: " << dist << endl;
-      r = next[r];
-      temp_set.insert(temp[r]);
-    }
+  // call function that traverses tree and saves all legas starts
+  is_start(0, 0);
 
-    // cout << "l: " << l << " r: " << r << " dist: " << dist << endl;
-
-    // check if feasible
-    // cout << "temp_set: ";
-    for (auto elem : temp_set) {
-      // cout << elem << " ";
-    }
-    // cout << endl;
-    // cout << *temp_set.begin() << " " <<  *(--temp_set.end()) << endl;
-    int temp_diff = abs(*temp_set.begin() - *(--temp_set.end()));
-    // cout << "temp_diff: " << temp_diff << endl;
-    if (temp_diff <= k && dist == m) {
-      result.push_back(l);
-    }
-
-    // increase left pointer
-    auto it = temp_set.find(temp[l]);
-    temp_set.erase(it);
-    dist--;
-    l = next[l];
-  }
-
-  sort(result.begin(), result.end());
   if (result.empty())
-    cout << "Abort mission";
+    cout << "Abort mission"
+         << "\n";
   else {
     for (auto elem : result) {
       cout << elem << " ";
     }
+    cout << "\n";
   }
-  cout << endl;
-  return;
 }
 
 int main() {

@@ -22,17 +22,17 @@ typedef CGAL::Quadratic_program_solution<ET> Solution;
 
 #define REP(i, n) for (int i = 0; i < n; ++i)
 
-double floor_to_double(const CGAL::Quotient<ET>& x)
-{
+double floor_to_double(const CGAL::Quotient<ET>& x) {
   double a = std::floor(CGAL::to_double(x));
   while (a > x) a -= 1;
-  while (a+1 <= x) a += 1;
+  while (a + 1 <= x) a += 1;
   return a;
 }
 
 void testcase() {
-
-  long init_x, init_y; int n; cin >> init_x >> init_y >> n;
+  long init_x, init_y;
+  int n;
+  cin >> init_x >> init_y >> n;
 
   // create an LP with Ax <= b, lower bound 0 and no upper bounds
   Program lp(CGAL::SMALLER, false, 0, false, 0);
@@ -42,25 +42,55 @@ void testcase() {
   const int D = 2;
   int index = 0;
   REP(i, n) {
-	  int a, b, c, v; cin >> a >> b >> c >> v;
-	  double norm = sqrt(a*a + b*b);
-	  lp.set_a(X, index, a);
-	  lp.set_a(Y, index, b);
-	  lp.set_a(D, index, norm);
-	  lp.set_b(index, -c);
-	  index++;
-  }
+    int a, b, c, v;
+    cin >> a >> b >> c >> v;
+    double norm = sqrt(pow(a, 2) + pow(b, 2)) * v;
 
-  lp.set_l(D, true, 0); 
+    // check sign of dist from cur line to initial point
+    bool sign = (a * init_x + b * init_y + c) > 0;
+
+    // add constraint, that we dont cross line
+    if (sign) {
+      lp.set_a(X, index, -a);
+      lp.set_a(Y, index, -b);
+      lp.set_b(index, c);
+    } else {
+      lp.set_a(X, index, a);
+      lp.set_a(Y, index, b);
+      lp.set_b(index, -c);
+    }
+    index++;
+    // add constraint that d is smaller than distance to cur line
+    if (sign) {
+      lp.set_a(X, index, -a);
+      lp.set_a(Y, index, -b);
+      lp.set_a(D, index, -norm);
+      lp.set_b(index, c);
+    } else {
+      lp.set_a(X, index, a);
+      lp.set_a(Y, index, b);
+      lp.set_a(D, index, -norm);
+      lp.set_b(index, -c);
+    }
+
+    index++;
+  }
+  // cout << endl;
+
+  lp.set_u(D, true, 0);
   // objective function
-  lp.set_c(D, -1);  
+  lp.set_c(D, 1);
 
   // solve the program, using ET as the exact type
   Solution s = CGAL::solve_linear_program(lp, ET());
   assert(s.solves_linear_program(lp));
 
   // output solution
-  std::cout << floor_to_double(CGAL::to_double(-s.objective_value())) << endl;
+   //cout << s << endl;
+  // CGAL::print_linear_program(std::cout, lp, "first_lp");
+  cout << setprecision(0);
+  std::cout << fixed << floor_to_double(CGAL::to_double(-s.objective_value()))
+            << endl;
 
   return;
 }
