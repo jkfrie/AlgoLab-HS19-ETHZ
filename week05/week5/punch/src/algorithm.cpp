@@ -7,75 +7,56 @@
 #include <utility>
 
 using namespace std;
+vector<int> costs;
+vector<int> volumes;
 
 #define REP(i, n) for(int i = 0; i < n; ++i)
 
-vector<pair<int,int>> beverages;
-vector<vector<pair<int,int>>> memo;
+void testcase() {
+    int n, k; cin >> n >> k;
+    costs = vector<int>(n);
+    volumes = vector<int>(n);
+    REP(i, n) cin >> costs[i] >> volumes[i];
 
-// Return pair (cost, variety)
-pair<int,int> optimum(int i, int vol) {
-  // check if result already exists
-  if(memo[i][vol].first < numeric_limits<int>::max()) return memo[i][vol];
+    // Rows of memo = volume and columns = drink i
+    vector<vector<pair<int,int>>> memo(k);
+    REP(cur_drink, n+1) {
+        REP(cur_vol, k+1) {
+            // if cur_vol is zero c and v are also zero
+            if(cur_vol == 0) memo[cur_drink].push_back(make_pair(0, 0));
 
-  int cur_cost = beverages[i].first;
-  int cur_vol = beverages[i].second;
-  pair<int,int> sol = make_pair(numeric_limits<int>::max(), 0);
+            // if we dont use any drink
+            else if(cur_drink == 0){
+                memo[cur_drink].push_back(make_pair(numeric_limits<int>::max(), 0));
+            }
 
-  // base Cases
-  if(i <= 0) {
-    if(vol <= cur_vol) {
-      //cout << i << " " << vol << ": " << cur_cost << " " << numeric_limits<int>::max() - 1 << endl;
-      memo[i][vol] = make_pair(cur_cost, numeric_limits<int>::max() - 1);
-      return memo[i][vol];
+            // recursive cases
+            else{
+
+                pair<int,int> sol1, sol2, sol3;
+                sol1 = memo[cur_drink][max(0, cur_vol - volumes[cur_drink])];
+                sol1.first += costs[cur_drink];
+                if(cur_vol - volumes[cur_drink] <= 0) ++sol1.second;
+
+                sol2 = memo[cur_drink - 1][max(0, cur_vol - volumes[cur_drink])];
+                sol2.first += costs[cur_drink];
+                ++sol2.second;
+
+                sol3 = memo[cur_drink][cur_vol];
+
+                memo[cur_drink][cur_vol] = min(sol1, min(sol2, sol3));
+            }
+
+        }
     }
-    else {
-      sol = optimum(i, vol - cur_vol);
-      sol.first += cur_cost;
-      //cout << i << " " << vol << ": " << sol.first << " " << sol.second << endl;
-      memo[i][vol] = sol;
-      return sol;
+
+    // print memo
+    for(auto line : memo){
+        for(auto elem : line) {
+            cout << elem << "  ";
+        }
+        cout << endl;
     }
-  }
-
-  if(vol <= cur_vol) {
-    pair<int,int> tmp = optimum(i - 1, vol);
-    sol = min(tmp, make_pair(cur_cost, numeric_limits<int>::max() - 1));
-    //cout << i << " " << vol << ": " << sol.first << " " << sol.second << endl;
-    memo[i][vol] = sol;
-    return sol;
-  }
-
-  // Recursive cases
-  sol = optimum(i-1, vol);
-
-  if(vol >= cur_vol) {
-    pair<int,int> tmp = optimum(i - 1, vol - cur_vol);
-    tmp.second--;
-    tmp.first += cur_cost;
-    sol = min(sol, tmp);
-
-    tmp = optimum(i, vol - cur_vol);
-    tmp.first += cur_cost;
-    sol = min(sol, tmp);
-  }
-  //cout << i << " " << vol << ": " << sol.first << " " << sol.second << endl;
-  memo[i][vol] = sol;
-  return sol;
-}
-
-void testcase(){
-  int n, k; cin >> n >> k;
-
-  beverages = vector<pair<int,int>>(n);
-  REP(i, n) {
-    int c, v; cin >> c >> v;
-    beverages[i] = make_pair(c, v);
-  }
-
-  memo = vector<vector<pair<int,int>>>(n, vector<pair<int,int>>(k + 1, make_pair(numeric_limits<int>::max(), 0)));
-  pair<int, int> result = optimum(n - 1, k);
-  cout << result.first << " " << numeric_limits<int>::max() - result.second << endl;
 }
 
 int main(int argc, char const *argv[]) {
