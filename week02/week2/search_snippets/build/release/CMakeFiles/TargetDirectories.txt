@@ -1,3 +1,0 @@
-/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week2/week2/search_snippets/build/release/CMakeFiles/rebuild_cache.dir
-/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week2/week2/search_snippets/build/release/CMakeFiles/algo.dir
-/home/jasonf/Dokumente/AlgoLab-HS19-ETHZ/week2/week2/search_snippets/build/release/CMakeFiles/edit_cache.dir
