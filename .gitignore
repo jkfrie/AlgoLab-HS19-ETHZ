@@ -1,8 +1,0 @@
-# Don't track these files
-book
-eth_made_easy_cs_block_1_v1_4
-/tools
-
-/build
-CMakelists.txt
-.algolab
